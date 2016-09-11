@@ -7,4 +7,10 @@
   `title1` `title` 是`excel`的表头<br/>
   `fileName`是保存的文件名<br/>
 **下载个2个表格的效果图：**<br/>
-![image](https://github.com/12-09/ExcelTool/blob/master/ExcelTool/WebContent/WEB-INF/images/ExcelTool.png)
+![image](https://github.com/12-09/ExcelTool/blob/master/ExcelTool/WebContent/WEB-INF/images/ExcelTool.png)<br/>
+
+                                                                                          于2016年9月11日深圳
+
+
+
+
