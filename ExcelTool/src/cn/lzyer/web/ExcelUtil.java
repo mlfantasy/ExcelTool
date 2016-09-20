@@ -26,8 +26,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 * 			1.支持1个table下载到一个excel中	
 * 			2.支持2个table下载到一个excel中
 * 			3.只能下载3万行excel，poi限制是65534和内存限制
+* 			4.将数据下载到一个excel表中的多个sheet页中
 * @author lzyer 
-* @date 2016年9月10日
+* @date 2016年9月10日 1.2.3
+* @date 2016年9月20日新增  4
 *
  */
 public class ExcelUtil
@@ -64,6 +66,43 @@ public class ExcelUtil
 		} 
 	}
 	
+	public static void downloadMutilSheetInExcel(HttpServletResponse response,
+			List<List<LinkedHashMap<String, Object>>> content, String[] titles,List<String> sheetNames,String fileName){
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		try
+		{
+			// 创建excel工作簿
+			Workbook workbook = new HSSFWorkbook();
+			for(int i=0; i< sheetNames.size(); i++){
+				createWorkBook(workbook, content.get(i), titles, sheetNames.get(i));
+			}
+			workbook.write(os);
+			exportExcel(response, os, fileName);
+		} catch(final Exception e)
+		{
+			e.printStackTrace();
+		} 
+	}
+	
+	private static void createWorkBook(Workbook workbook,
+			List<LinkedHashMap<String, Object>> content, String[] titles,
+			String sheetName)
+	{
+				// 获取key值
+				Object[] objs =  content.get(0).keySet().toArray();
+				String[] keys = Arrays.asList(objs).toArray(new String[0]);
+				
+				// 创建第一个sheet（页），并命名
+				Sheet sheet = workbook.createSheet(sheetName);
+				//定义样式并设置
+				CellStyle	cs = workbook.createCellStyle();
+				CellStyle	cs2 = workbook.createCellStyle();
+				setStyle(keys, workbook, sheet,cs, cs2);
+				//生成表格
+				generateTable(content, titles, keys, workbook, sheet,cs, cs2, 0);
+				setAutoWith(keys,sheet);
+	}
+
 	/**
 	* @Title: exportExcel
 	* @Description: 输出excel

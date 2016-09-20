@@ -11,5 +11,6 @@
  	Hello SpringMVC.
  	
  	<a href="download/excel" style="display: block; margin-top: 15px;">下载excel</a>
+ 	<a href="download/sheetexcel" style="display: block; margin-top: 15px;">下载sheetexcel</a>
 </body>
 </html>

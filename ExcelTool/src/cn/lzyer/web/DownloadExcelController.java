@@ -75,10 +75,43 @@ public class DownloadExcelController
 		}
 		
 		//下载文件
-		ExcelUtil.downloadTwoTable2Excel(response, content1, title1, content2, title2, "学校人员信息");
-		//ExcelUtil.downloadOneTable2Excel(response, content1, title1, "用户信息");
+		//ExcelUtil.downloadTwoTable2Excel(response, content1, title1, content2, title2, "学校人员信息");
+		ExcelUtil.downloadOneTable2Excel(response, content1, title1, "用户信息");
 	}
-	
+	/**
+	* @Title: downloadMutilSheetExcel
+	* @Description: 测试下载到多个sheet页中
+	* @param @param request
+	* @param @param response    参数
+	* @return void    返回类型
+	* @throws
+	 */
+	@RequestMapping("/sheetexcel")
+	@ResponseBody
+	public void downloadMutilSheetExcel(HttpServletRequest request, HttpServletResponse response){
+		//模拟数据库中的数据
+				String[] title1 = {"序号","姓名","日期"};
+				List<List<LinkedHashMap<String,Object>>> contents = new ArrayList<List<LinkedHashMap<String,Object>>>();
+				for(int j=0; j<5; j++){
+					List<LinkedHashMap<String,Object>> content1 = new ArrayList<LinkedHashMap<String,Object>>();
+					for(int i=0; i<5; i++)
+					{
+						LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+						map.put("number", i+"");
+						map.put("name", "用户"+i);
+						map.put("date", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+						content1.add(map);
+					}
+					contents.add(content1);
+				}
+				List<String> sheetNames = new ArrayList<String>();
+				sheetNames.add("七月用户数据");
+				sheetNames.add("八月用户数据");
+				sheetNames.add("九月用户数据");
+				sheetNames.add("十月用户数据");
+				sheetNames.add("十一月用户数据");
+				ExcelUtil.downloadMutilSheetInExcel(response, contents, title1, sheetNames, "用户数据");
+	}
 }
 
 
