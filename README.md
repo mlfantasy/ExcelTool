@@ -8,8 +8,14 @@
   `fileName`是保存的文件名<br/>
 **下载个2个表格的效果图：**<br/>
 ![image](https://github.com/12-09/ExcelTool/blob/master/ExcelTool/WebContent/WEB-INF/images/ExcelTool.png)<br/>
+- **多个Sheet页在Excel表中**：将多个数据导入到一个`excel` 中的不同`sheet`中，对应的方法名
+`downloadMutilSheetInExcel(HttpServletResponse response,List<List<LinkedHashMap<String, Object>>> content, String[] titles,List<String> sheetNames,String fileName)`
+参数`sheetName`是sheet页的名称。
+多sheet如图:<br/>
+![image](https://github.com/12-09/ExcelTool/blob/master/ExcelTool/WebContent/WEB-INF/images/sheetExcel.png)<br/>
 
                                                                                           于2016年9月11日深圳
+                                                                                            2016年9月20日更新
 
 
 
