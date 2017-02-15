@@ -12,5 +12,6 @@
  	
  	<a href="download/excel" style="display: block; margin-top: 15px;">下载excel</a>
  	<a href="download/sheetexcel" style="display: block; margin-top: 15px;">下载sheetexcel</a>
+ 	<a href="download/exportV2" style="display: block; margin-top: 15px;">下载ExcelV2</a>
 </body>
 </html>
